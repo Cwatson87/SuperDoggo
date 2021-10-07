@@ -1,29 +1,99 @@
+let events = [{
+        event: "ComicCon",
+        city: "New York",
+        state: "New York",
+        attendance: 240000,
+        date: "06/01/2017",
+    },
+    {
+        event: "ComicCon",
+        city: "New York",
+        state: "New York",
+        attendance: 250000,
+        date: "06/01/2018",
+    },
+    {
+        event: "ComicCon",
+        city: "New York",
+        state: "New York",
+        attendance: 257000,
+        date: "06/01/2019",
+    },
+    {
+        event: "ComicCon",
+        city: "San Diego",
+        state: "California",
+        attendance: 130000,
+        date: "06/01/2017",
+    },
+    {
+        event: "ComicCon",
+        city: "San Diego",
+        state: "California",
+        attendance: 140000,
+        date: "06/01/2018",
+    },
+    {
+        event: "ComicCon",
+        city: "San Diego",
+        state: "California",
+        attendance: 150000,
+        date: "06/01/2019",
+    },
+    {
+        event: "HeroesCon",
+        city: "Charlotte",
+        state: "North Carolina",
+        attendance: 40000,
+        date: "06/01/2017",
+    },
+    {
+        event: "HeroesCon",
+        city: "Charlotte",
+        state: "North Carolina",
+        attendance: 45000,
+        date: "06/01/2018",
+    },
+    {
+        event: "HeroesCon",
+        city: "Charlotte",
+        state: "North Carolina",
+        attendance: 50000,
+        date: "06/01/2019",
+    },
+];
 
-// displays a message to the user
-function displayMessage(){
-    //declare out variable
-    let msg = "" ;
 
-    //pull the value from the input box
-    msg = document.getElementById("message").value;
-    
-    //altert the user
-    alert(msg);
-}
-   
-function displayMessage2() {
-    //declare out variable
-    let msg = "";
 
-    //pull the value from the input box
-    msg = document.getElementById("message").value;
+//dd = dropdown
+//build a dropdown of distinct cities
+function buildDropdown() {
 
-    //sweet alert - Alerts the user
-    ;Swal.fire(msg);
-}
+    let eventDD = document.getElementById("eventDropDown");
+    //clear out the drop down
+    eventDD.innerHTML = "";
 
-    function getValues(){
-        let msg= "";
+    //Get the template
+    let ddTemplate = document.getElementById("cityDD-template");
 
-        msg= document.getElementById("message").value
+    let currentEvents = events;
+
+
+    //get unique values from the array
+    let distictEvents = [...new Set(currentEvents.map((event) => event.city))];
+
+    let ddItemNode = document.importNode(ddTemplate.content, true);
+    //<li><a class ="dropdown-item" onclick="getEvents(this)"></a></li>
+
+    let ddItem = ddItemNode.queryselector("a");
+    //<a class ="dropdown-item" data-string="All" onclick="getEvents(this)"></a>
+
+
+    ddItem.setAttribute("data-string", "All");
+    //<a class ="dropdown-item" data-string="All" onclick="getEvents(this)">All</a>
+
+    ddItem.textContent = "All";
+    //<a class ="dropdown-item" data-string="All" onclick="getEvents(this)">All</a>
+
+    eventDD.appendChild(ddItem);
 }
